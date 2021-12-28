@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'stripe_connect_id',
+        'completed_stripe_onboarding'
     ];
 
     /**
@@ -40,5 +42,6 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'completed_stripe_onboarding' => 'bool'
     ];
 }

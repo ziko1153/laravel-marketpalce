@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SellerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('seller/{id}', [SellerController::class, 'show'])->name('seller.profile');
+Route::get('stripe/{id}', [SellerController::class, 'redirectToStripe'])->name('redirect.stripe');
+Route::get('connect/{token}', [SellerController::class, 'saveStripeAccount'])->name('save.stripe');
+Route::post('charge/{id}', [SellerController::class, 'purchase'])->name('complete.purchase');
+
+Route::get('checkout/{product}', [SellerController::class, 'checkout'])->name('checkout');
+Route::post('token', [SellerController::class, 'createToken'])->name('create.token');
